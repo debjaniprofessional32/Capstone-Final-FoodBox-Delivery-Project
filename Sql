@@ -1,0 +1,54 @@
+ following is Sql used in Project
+4 table in ofshop
+user
+list
+cart
+f_order
+ 
+ 
+ create database IF NOT EXISTS foodshop;
+show databases;
+use ofshop;
+
+
+ALTER TABLE cart add  modeofpayment varchar(255) ;
+Select * from list ;
+desc list
+
+Create table cart(cid int not null auto_increment,fid int,uid int,fname varchar(255),
+fdescription varchar(255),price Double,totalprice Double, primary key(cid));
+CREATE TABLE user(id int not null auto_increment, 
+name varchar(25),phone varchar(25),email varchar(25),
+password varchar(25),address varchar(25),landmark varchar(25),city varchar(25), 
+state varchar(25), zip varchar(25),PRIMARY KEY (id));
+
+select * from list where category="Burgur/pizza" and status="Active";
+Select * from cart ;
+desc cart;
+select id,name,Description,Category,Price,producimage from Itemlist where id =1;
+ALTER TABLE cart add column discount varchar(255) after totalprice;
+UPDATE list SET description ="Spicy Curry with rice & rot" WHERE fid=6;
+UPDATE list SET description ="Sweet" WHERE fid=7;
+UPDATE list SET description ="curry of mailai kopta" WHERE fid=8;
+
+delete from cart where cid=23 ;
+CREATE TABLE order_details (price DOUBLE, quantity INT, amount DOUBLE AS (price * quantity));
+desc order_details ;
+CREATE TABLE list (fid int not null auto_increment,name VARCHAR(20),price double, category VARCHAR(20),
+    status varchar(45),photo varchar(45), PRIMARY KEY (fid));
+ALTER TABLE list add discountpercent varchar(145) ;
+ALTER TABLE list add COLUMN discountamount varchar(255)  AS (price * (discountpercent / 100)) ;
+ALTER TABLE list ADD COLUMN finalprice varchar(255)  AS (price * (1-discountpercent / 100)) ;
+
+create table cart(cid int not null auto_increment,fid int,uid int,fname varchar(255),price double,
+totalprice double,primary key (cid));
+
+select * from list where status="Active" and discountpercent>0;
+create table f_order(id int not null auto_increment,order_id varchar(100),user_name  varchar(100),
+Email varchar(100),address varchar(500),phone varchar(100),cuisne_name varchar(100),
+discount_percent varchar(100),price varchar(100),Payment varchar(100),primary key(id));
+desc f_order
+ALTER TABLE f_order ADD COLUMN carddetail varchar(500);
+ALTER TABLE f_order drop COLUMN cvv
+ALTER TABLE f_order modify COLUMN phone before address;,
+ALTER TABLE f_order ADD COLUMN cvv int;
