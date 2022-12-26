@@ -1,0 +1,9 @@
+package com.uDAO;
+
+import com.uentity.Cart;
+import com.uentity.CusineList;
+
+public interface CartDao {
+public boolean addCart(Cart c);
+public List<Cart> getFoodByUser(int userID);
+}

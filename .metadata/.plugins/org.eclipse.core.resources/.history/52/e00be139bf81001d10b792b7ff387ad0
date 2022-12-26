@@ -1,0 +1,7 @@
+package com.uDAO;
+
+import com.uentity.Cart;
+
+public interface CartDao {
+public boolean addCart(Cart c);
+}

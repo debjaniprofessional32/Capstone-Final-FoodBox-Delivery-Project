@@ -1,0 +1,39 @@
+package com.uDAO;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class OrderImpDao implements OrderDao{
+  
+	private Connection conn;
+  
+	public OrderImpDao(Connection conn) {
+	super();
+	this.conn = conn;
+}
+
+	@Override
+	public int getOrderNp() {
+		int i=1;
+		try {
+			
+			String sql="Select * from f_order";
+			PreparedStatement ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+				
+			{
+				
+				i++;
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+}

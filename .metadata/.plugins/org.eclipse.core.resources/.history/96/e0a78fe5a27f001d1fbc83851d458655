@@ -1,0 +1,62 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ page import="javax.servlet.*" %>
+<%@ page import="javax.servlet.http.*" %>
+<%@ page import="java.sql.*" %>
+<%@ page  import="com.DB.DBConnect" %>
+<%@ page import="com.uDAO.CusineDao" %>
+  <%@ page import="com.uDAO.CusineImpDao" %>
+   <%@ page import="com.uentity.CusineList" %>
+  <%@ page import = "java.io.*" %>
+ <%@ page import = "java.util.*"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ page isELIgnored = "false" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>All Non-Veg Cusine</title>
+<%@include file="all_Component/allCss.jsp"%>
+<link rel="stylesheet" href="all_Component/style.css">
+<style type="text/css">
+.crd-ho:hover {
+	background-color: #EEFAFA;
+}
+</style>
+</head>
+<body>
+<%@include file="all_Component/navbar.jsp"%>
+<div class="container-fluid">
+<div class="row">
+<%
+					CusineImpDao dao=new CusineImpDao(DBConnect.getConn());
+					List<CusineList> list=dao.getAllNon_VegItem();
+					for(CusineList c:list){%>
+						
+						<div class="cols-md-3 mx-5 px-4 py-4">
+					
+						<div class="card ">
+							<div class="card-body text-center crd-ho">
+								<img src="food/<%=c.getPhotoname() %>" alt=""
+									style="width: 150px; height: 200px;" class="img-thumbnail">
+								<p><%=c.getFname() %></p>
+								<P><%=c.getDescription() %></P>
+								<P><%=c.getCategory() %></P>
+								<div class="row">
+									<a href="" class="btn btn-success btn sm ml-1"><i class='fa fa-shopping-cart'></i>&nbsp;Add Cart</a> 
+									<a	href="" class="btn btn-info btn sm ml-1">View Detail</a> 
+									<a	href="" class="btn btn-success btn sm ml-1"><i class="fas fa-rupee-sign">&nbsp;<%=c.getPrice() %></i></a>
+								</div>
+								</div>
+							</div>
+						</div>
+						<%
+					}
+					
+					%>
+
+</div>
+
+</div>
+</body>
+</html>

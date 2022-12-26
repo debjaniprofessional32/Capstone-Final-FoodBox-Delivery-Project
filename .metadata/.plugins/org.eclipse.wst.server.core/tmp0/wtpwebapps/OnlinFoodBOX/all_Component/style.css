@@ -1,0 +1,17 @@
+ .navbar-nav active .nav-link:hover {
+    
+    background-color:#b2ff59;
+    text-color:#000000;
+    border-radius:10px;
+}
+.navbar-item:hover {
+    
+   
+    text-color:#000000;
+  
+}
+
+.carousel {
+  width:auto;
+  height:400px;
+}

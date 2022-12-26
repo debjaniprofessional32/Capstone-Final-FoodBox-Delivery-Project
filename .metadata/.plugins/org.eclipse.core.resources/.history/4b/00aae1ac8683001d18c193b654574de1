@@ -1,0 +1,63 @@
+package com.uDAO;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.List;
+
+import com.uentity.CusineList;
+import com.uentity.Food_Order;
+public class OrderImpDao implements OrderDao{
+  
+	private Connection conn;
+  
+	public OrderImpDao(Connection conn) {
+	super();
+	this.conn = conn;
+}
+
+	@Override
+	public int getOrderNo() {
+		int i=1;
+		try {
+			
+			String sql="Select * from f_order";
+			PreparedStatement ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+				
+			{
+				
+				i++;
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return i;
+	}
+
+	@Override
+	public boolean saveOrder(List<CusineList> clist) {
+		boolean f=false;
+		try {
+String sql="insert into f_order(order_id,user_name,Email,address,phone,cuisne_name,discount_percent,price,Payment,carddetail) values (?,?,?,?,?,?,?,?,?,?)";
+		conn.setAutoCommit(false);
+		PreparedStatement ps=conn.prepareStatement(sql);
+		for(CusineList c:clist)
+		{
+			ps.setString(1,c.getO);
+		}
+		}
+		
+		catch(Exception e)
+		{
+			e.printStackTrace();}
+		return f;
+	}
+	
+	
+
+}

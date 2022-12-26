@@ -1,0 +1,41 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<%@include file="all_Component/allCss.jsp"%>
+<link rel="stylesheet" href="all_Component/style.css">
+<style type="text/css">
+a{
+text-decoration:none;
+color:green;
+}
+a:hover{
+text-decoration:none;
+color:yellow;
+}
+
+</head>
+<body style="background-color: #F6FEFE;">
+<%@include file="all_Component/navbar.jsp"%>
+<div class="container">
+<H3 class="text-center">Hello User</H3>
+
+<div class="row d-flex justify-content-center p-5">
+<div class=" col-md-6">
+<a>
+<div class="card ">
+<div class="card-body text-center">
+<i class="fas fa-edit fa-3x "></i>
+<h4>Login Security(Profile Edit)</h4>
+</div>
+</div>
+</a>
+</div>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Edit Profile</title>
+<%@include file="all_Component/allCss.jsp"%>
+</head>
+<body style="background-color:#8DB496 ">
+<%@include file="all_Component/navbar.jsp"%>
+
+<div class="container">
+<div class="row">
+<div class="col-md-4 offset-md-4">
+<div class="card">
+<div class="card-body">
+<form class="form-horizontal" action="" method="">
+
+<table>
+<tr>
+<td>
+    <label for="exampleInputEmail1">Full Name</label>
+    </td>
+    <td>
+    <input type="text" class="form-control" name="fname" id="exampleInputEmail1" aria-describedby="emailHelp" required="required">
+ </td>
+ </tr>
+
+
+
+
+
+
+
+
+
+</table>
+
+
+
+
+
+</form>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+	<%@include file="all_Component/footer.jsp"%>
+
+</body>
+</html>

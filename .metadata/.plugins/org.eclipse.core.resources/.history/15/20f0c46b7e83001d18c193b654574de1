@@ -1,0 +1,6 @@
+package com.uDAO;
+
+public interface OrderDao {
+	public int getOrderNo();
+
+}

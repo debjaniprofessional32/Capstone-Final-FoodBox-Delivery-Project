@@ -1,0 +1,58 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<%@include file="all_Component/allCss.jsp"%>
+
+<link rel="stylesheet" href="all_Component/style.css">
+<style type="text/css">
+.crd-ho:hover {
+	background-color: #EEFAFA;
+}
+</style>
+</head>
+<body style="background-color:#f0f1f2;">
+<%@include file="all_Component/navbar.jsp"%>
+<div class="container d-flex justify-content-center p-3">
+<div class="row  p-5">
+<div class="column-md-5 text-center m-1 p-5 border bg-white">
+
+<img src="img/sweet/modak.jpg" alt=""	style="width: 90px; height: 120px;" class="img-thumbnail">
+<br><br>
+<h4> Cusine Name:</h4>
+<h6>Cusine Description:</he>
+
+</div>
+
+<div class="column-md-5 m-1 text-center p-5 border bg-white">
+
+
+<h3> Cusine Name:</h3>
+<div class="row d-flex justify-content-center">
+<div class="col-md-4 text-danger text-center m-1 p-3"><i class="fas fa-money-bill-wave fa-1x"></i>
+<h4>Cash on Delivery</h4></div>
+
+<div class="col-md-4 text-danger text-center m-1 p-3"><i class="fas fa-truck-moving fa-1x"></i>
+<h4>Free Delivery</h4></div>
+
+
+
+</div>
+<div class="row d-flex justify-content-center">
+<a href="" class="btn btn-primary"><i class="fas fa-cart-plus"></i>Add to cart</a>&nbsp;
+<a href="" class="btn btn-warning"><i class="fas fa-rupee-sign"></i>Price</a>
+</div>
+
+</div>
+
+
+</div>
+
+
+
+</div>
+</body>
+</html>

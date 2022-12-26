@@ -1,0 +1,9 @@
+package com.uDAO;
+
+import com.uentity.User;
+
+public interface UserInterfaceDao {
+	public boolean userRegister(User us);
+	public User login(String email,String password);
+	public boolean checkPassword(String ps);
+}

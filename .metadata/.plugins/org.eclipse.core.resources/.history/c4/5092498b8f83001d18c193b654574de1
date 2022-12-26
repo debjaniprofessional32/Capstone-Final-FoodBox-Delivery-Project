@@ -1,0 +1,77 @@
+package com.uDAO;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.List;
+
+import com.uentity.CusineList;
+import com.uentity.Food_Order;
+public class OrderImpDao implements OrderDao{
+  
+	private Connection conn;
+  
+	public OrderImpDao(Connection conn) {
+	super();
+	this.conn = conn;
+}
+
+	@Override
+	public int getOrderNo() {
+		int i=1;
+		try {
+			
+			String sql="Select * from f_order";
+			PreparedStatement ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+				
+			{
+				
+				i++;
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return i;
+	}
+
+	@Override
+	public boolean saveOrder(List<Food_Order> fo) {
+		boolean f=false;
+		try {
+String sql="insert into f_order(order_id,user_name,Email,address,phone,cuisne_name,discount_percent,price,Payment,carddetail) values (?,?,?,?,?,?,?,?,?,?)";
+		conn.setAutoCommit(false);
+		PreparedStatement ps=conn.prepareStatement(sql);
+		for(Food_Order c:fo)
+		{
+			ps.setString(1,c.getOrder_id());
+			ps.setString(2,c.getUserName());
+			ps.setString(3,c.getEmail());
+			ps.setString(4,c.getFulladd());
+			ps.setString(5,c.getPhone());
+			ps.setString(6,c.getCusinename());
+			ps.setString(7,c.getDiscount_percent());
+			ps.setString(8,c.getPrice());
+			ps.setString(9,c.getPaymentType());
+			ps.setString(10,c.getCartdetail());
+			ps.addBatch();
+		}
+		int[] count=ps.executeBatch();
+		conn.commit();
+		f=true;
+		conn.setAutoCommit(true);
+		}
+		
+		catch(Exception e)
+		{
+			e.printStackTrace();}
+		return f;
+	}
+	
+	
+
+}

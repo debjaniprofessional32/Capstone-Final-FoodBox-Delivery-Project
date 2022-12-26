@@ -1,0 +1,219 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ page import="com.uDAO.CartImpDao" %>
+    <%@ page import="javax.servlet.*" %>
+<%@ page import="javax.servlet.http.*" %>
+<%@ page import="java.sql.*" %>
+<%@ page  import="com.DB.DBConnect" %>
+<%@ page import="com.uDAO.CartDao" %>
+  <%@ page import="com.uDAO.CartImpDao" %>
+   <%@ page import="com.uentity.Cart" %>
+   <%@ page import="com.uentity.User" %>
+  <%@ page import = "java.io.*" %>
+ <%@ page import = "java.util.*"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ page isELIgnored = "false" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<%@include file="all_Component/allCss.jsp"%>
+<link rel="stylesheet" href="all_Component/style.css">
+<link rel="stylesheet"href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<style>
+   #hideValuesOnSelect {
+      display: none;
+   }
+</style>
+</head>
+<body>
+<%@include file="all_Component/navbar.jsp"%>
+
+<c:if test="${empty userobj }">
+<c:redirect url="login.jsp"></c:redirect>
+</c:if>
+<c:if test="${not empty succMsg}">
+<div class="alert alert-success" role="alert">
+  ${succMsg}
+</div>
+<c:remove var="succMsg" scope="session"/>
+</c:if>
+<c:if test="${not empty failedMsg}">
+<div class="alert alert-danger" role="alert">
+${failedMsg}
+</div>
+<c:remove var="failedMsg" scope="session"/>
+</c:if>
+<div class="container">
+<div class="row py-2">
+<div class="col-md-6">
+
+<div class="card">
+<div class="card-body">
+<h4 class="text-center text-success">Your Selected Cusine</h4>
+<table class="table bg-white table-hover">
+  <thead>
+    <tr>
+      
+      <th>Food Name</th>
+      <th>Description</th>
+      <th>Discount%</th>
+      <th>Price</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  <%
+   User u=(User)session.getAttribute("userobj");
+  CartImpDao dao = new CartImpDao(DBConnect.getConn());
+  List<Cart> cart=dao.getFoodByUser(u.getId());
+  Double totalp=0.00;
+  for(Cart c:cart ){ 
+	  totalp=c.getTotalprice();
+  %>
+	 <tr>
+      <td><%=c.getFname() %></td>
+      <td><%=c.getFdescription() %></td>
+      <td><%=c.getDiscount() %></td>
+       <td><%=c.getPrice() %></td>
+      <td>
+      <a href="remove_Cusine?fid=<%=c.getFid()%>&&uid=<%=c.getUserid()%>"> <i class="fas fa-trash-alt text-danger"></i></a>      <!-- -----<i class="fas fa-trash-alt text-danger"> -->
+      </td>
+  </tr>
+<%
+
+  } 
+  %>
+    <tr>
+    <td>Total Bill</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><%=totalp %></td>
+    </tr>
+    
+  </tbody>
+</table>
+
+</div>
+</div>
+
+</div>
+<div class="col-md-6">
+<div class="card">
+<div class="card-body">
+<h4 class="text-center text-success"> Your detail for  order</h4>
+<hr>
+<form>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Name</label>
+      <input type="text" class="form-control" id="inputEmail4" value="<%=u.getName()%>" readonly="readonly">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Phone</label>
+      <input type="Number" class="form-control" id="inputPassword4" value="<%=u.getPhone%>">
+    </div>
+  </div>
+   <div class="form-row"
+>
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Email</label>
+      <input type="email" class="form-control" id="inputEmail4" <%=u.getEmail()%>" readonly="readonly">
+    </div>
+   
+  </div>
+   
+  <div class="form-group">
+    <label for="inputAddress">Address</label>
+    <input type="text" class="form-control" id="inputAddress" placeholder="">
+  </div>
+  <div class="form-group">
+    <label for="inputAddress2">Landmark</label>
+    <input type="text" class="form-control" id="inputAddress2" placeholder="">
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">City</label>
+      <input type="text" class="form-control" id="inputCity">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputState">State</label>
+      <select id="inputState" class="form-control">
+        <option selected>Choose...</option>
+        <option>...</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputZip">Zip</label>
+      <input type="text" class="form-control" id="inputZip">
+    </div>
+  </div>
+    <!-- ------- -->
+   <div class="form-row">
+    
+    <div class="form-group col-md-4">
+      <label for="inputState">Mode of Payment</label>
+      <select onchange="displayDivDemo('hideValuesOnSelect', this)" class="form-control">
+      <option value="0">Select Type</option>
+      <option value="1">Card</option>
+      <option value="2">Cash on delivery</option>
+      </select>
+    </div>
+    
+  </div>
+  <div id="hideValuesOnSelect">
+    <div class="form-row">
+    <div class="form-group col-md-6">
+      
+      <input type="text" class="form-control" id="inputEmail4" placeholder="Cardholder's Name">
+      <label for="inputEmail4">&nbsp;Cardholder's Name</label>
+    </div>
+    <div class="form-group col-md-6">
+      
+      <input type="Number" class="form-control" id="inputPassword4" placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" >
+      <label for="inputPassword4">&nbsp;Card Number</label>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      
+      <input type="text" class="form-control" id="inputEmail4" placeholder="MM/YYYY" size="7" id="exp" minlength="7" maxlength="7" >
+      <label for="inputEmail4">Expiration</label>
+    </div>
+    <div class="form-group col-md-6">
+      
+      <input type="Number" class="form-control" id="inputPassword4" placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" >
+      <label for="inputPassword4">CVV</label>
+    </div>
+  </div>
+  </div>
+  <script>
+   function displayDivDemo(id, elementValue) {
+      document.getElementById(id).style.display = elementValue.value == 1 ? 'block' : 'none';
+   }
+</script>
+  
+  <!-- ------- -->
+  <div class="text-center">
+     <button class="btn btn-warning">Order Now</button>
+     <a href="index.jsp"class="btn btn-success">Coninue shopping</a>
+     </div>
+    </form> 
+  </div>
+ 
+
+
+</div>
+
+</div>
+
+
+</div>
+</div>
+</div>
+</body>
+</html>

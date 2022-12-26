@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<%@include file="all_Component/allCss.jsp"%>
+<link rel="stylesheet" href="all_Component/style.css">
+<style type="text/css">
+.crd-ho:hover {
+	background-color: #EEFAFA;
+}
+</head>
+<body style="background-color: #F6FEFE;">
+<%@include file="all_Component/navbar.jsp"%>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+package com.uDAO;
+
+import java.util.List;
+
+import com.uentity.CusineList;
+
+public interface OrderDao {
+	public int getOrderNo();
+	public boolean saveOrder(List<CusineList> clist);
+
+}

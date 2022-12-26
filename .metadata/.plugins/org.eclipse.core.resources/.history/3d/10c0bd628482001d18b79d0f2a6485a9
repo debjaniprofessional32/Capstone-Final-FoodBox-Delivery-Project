@@ -1,0 +1,70 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<%@include file="all_Component/allCss.jsp"%>
+<link rel="stylesheet" href="all_Component/style.css">
+<style type="text/css">
+a {
+	text-decoration: none;
+	color: black
+}
+
+a:hover {
+	text-decoration: none;
+	color: brown;
+}
+</style>
+</head>
+<body style="background-color: #F6FEFE;">
+	<%@include file="all_Component/navbar.jsp"%>
+	<div class="container">
+		<H3 class="text-center">Hello User</H3>
+
+		<div class="row d-flex justify-content-center p-5">
+			<div class="col-md-5">
+				<a href="">
+					<div class="card ">
+						<div class="card-body">
+							<div class="card-body text-center">
+								<i class="fas fa-id-card fa-3x text-success"></i>
+							</div>
+							<h4>Login & Security(Profile Edit)</h4>
+						</div>
+					</div>
+				</a>
+			</div>
+				<div class="col-md-5">
+				<a href="">
+					<div class="card ">
+						<div class="card-body">
+							<div class="card-body text-center">
+								<i class="fas fa-map-marker-alt fa-3x text-warning"></i>
+							</div>
+							<h4 class="text-center">Your Location</h4>
+							<P class="text-center" >Edit address</P>
+						</div>
+					</div>
+				</a>
+			</div>
+				<div class="col-md-5 p-4">
+				<a href="">
+					<div class="card ">
+						<div class="card-body">
+							<div class="card-body text-center">
+								<i class="fas fa-user-circle fa-3x text-primary"></i>
+							</div>
+							<h4 class="text-center" >Help(Contact Center)</h4>
+							<h3><p class="text-center" >24 * 7 Service</p></h3>
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
